@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.onEach
 import okio.IOException
 import retrofit2.HttpException
 import uz.gita.mynewsapp.utils.isConnected
+import uz.gita.recentnews.data.source.local.room.MyRoomDataBase
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 import uz.gita.recentnews.domain.repository.NewsRepository
 import uz.gita.recentnews.presentation.MainViewModel
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModelImpl @Inject constructor(
-    private val repository: NewsRepository
+    private val repository: NewsRepository,
 ) : ViewModel(), MainViewModel {
 
     override var errorLivedata = MutableLiveData<String>()
@@ -53,5 +54,9 @@ class MainViewModelImpl @Inject constructor(
 
     override fun openFavouriteScreen() {
         openFavouriteScreenLiveData.value = Unit
+    }
+
+    override fun addToFavourite(newsFav: NewsEntity) {
+        repository.addToFavourites(newsFav)
     }
 }

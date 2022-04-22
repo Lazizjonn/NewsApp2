@@ -18,52 +18,47 @@ import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 import uz.gita.recentnews.databinding.FragmentMainBinding
 import uz.gita.recentnews.presentation.MainViewModel
 import uz.gita.recentnews.presentation.impl.MainViewModelImpl
-import uz.gita.recentnews.ui.adapter.NewsListAdapter
+import uz.gita.recentnews.ui.adapter.MainListAdapter
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding by viewBinding(FragmentMainBinding::bind)
     private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
-    private val adapter = NewsListAdapter()
+    private val adapter = MainListAdapter()
     lateinit var toggle: ActionBarDrawerToggle
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
+        listNews.layoutManager = LinearLayoutManager(requireContext())
+        listNews.adapter = adapter
 
         buttonBack.setOnClickListener {
             // If the navigation drawer is not open then open it, if its already open then close it.
             if (!drawer.isDrawerOpen(GravityCompat.START)) drawer.openDrawer(GravityCompat.START)
             else drawer.closeDrawer(GravityCompat.END)
         }
-
         clickFavourite.setOnClickListener {
             viewModel.openFavouriteScreen()
         }
         swipeRefresh.setOnRefreshListener {
             viewModel.allNews("all")
         }
-
-        listNews.layoutManager = LinearLayoutManager(requireContext())
-        listNews.adapter = adapter
+        adapter.setListener {
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToReadMoreFragment(it))
+        }
 
         viewModel.errorLivedata.observe(viewLifecycleOwner, errorObserver)
         viewModel.progressLivedata.observe(viewLifecycleOwner, progressObserver)
         viewModel.loadNewsLivedata.observe(viewLifecycleOwner, loadNewsObserver)
         viewModel.openFavouriteScreenLiveData.observe(viewLifecycleOwner, openFavouriteScreenObserver)
 
-        adapter.setListener {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToReadMoreFragment(it))
-        }
-
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { return toggle.onOptionsItemSelected(item) }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = toggle.onOptionsItemSelected(item)
 
     private val progressObserver = Observer<Boolean> { binding.swipeRefresh.isRefreshing = it }
     private val errorObserver = Observer<String> { Toast.makeText(requireContext(), "Network error", Toast.LENGTH_SHORT).show() }
-    private val loadNewsObserver = Observer<List<NewsEntity>> {
-        it.let { adapter.submitList(it) }
-    }
-    private val openFavouriteScreenObserver = Observer<Unit> {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToFavouriteFragment())
-    }
+    private val loadNewsObserver = Observer<List<NewsEntity>> { it.let { adapter.submitList(it) } }
+    private val openFavouriteScreenObserver = Observer<Unit> { findNavController().navigate(MainFragmentDirections.actionMainFragmentToFavouriteFragment()) }
+
+
 }

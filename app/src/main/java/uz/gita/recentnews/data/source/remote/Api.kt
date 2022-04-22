@@ -3,7 +3,7 @@ package uz.gita.recentnews.data.source.remote
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-import uz.gita.recentnews.data.model.responce.NewsResponse
+import uz.gita.recentnews.data.model.NewsResponse
 
 interface Api {
 

@@ -22,8 +22,9 @@ data class NewsEntity(
 
     val timestamp: String,
 
-    val category: String
-) : Serializable
+    val category: String,
+
+    ) : Serializable
 
 
 

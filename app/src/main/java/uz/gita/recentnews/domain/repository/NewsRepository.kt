@@ -8,5 +8,5 @@ interface NewsRepository {
 
     fun getAllNewsFromNet(query: String): Flow<Result<List<NewsEntity>>>
     fun getAllNewsFromRoom(query: String): List<NewsEntity>
-
+    fun addToFavourites(newsFav: NewsEntity)
 }

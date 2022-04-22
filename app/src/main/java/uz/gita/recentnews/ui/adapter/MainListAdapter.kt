@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import uz.gita.recentnews.R
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 
-class NewsListAdapter : ListAdapter<NewsEntity, NewsListAdapter.NewsListViewHolder>(NewsDiffUtil) {
+class MainListAdapter : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHolder>(NewsDiffUtil) {
 
     private var listener: ((NewsEntity) -> Unit)? = null
 
@@ -66,18 +66,15 @@ class NewsListAdapter : ListAdapter<NewsEntity, NewsListAdapter.NewsListViewHold
                     listener?.invoke(item)
                 }
             }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
         return NewsListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false))
     }
-
     override fun onBindViewHolder(holder: NewsListViewHolder, position: Int) {
         holder.bind()
     }
-
     fun setListener(block: (NewsEntity) -> Unit) {
         listener = block
     }

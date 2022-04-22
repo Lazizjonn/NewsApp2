@@ -13,5 +13,6 @@ interface MainViewModel {
 
     fun allNews(query: String)
     fun openFavouriteScreen()
+    fun addToFavourite(newsFav : NewsEntity)
 
 }

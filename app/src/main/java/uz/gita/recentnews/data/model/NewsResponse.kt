@@ -1,4 +1,5 @@
-package uz.gita.recentnews.data.model.responce
+package uz.gita.recentnews.data.model
+
 
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -47,4 +48,4 @@ sealed class NewsResponse {
 }
 
 fun NewsResponse.ArticlesData.toArticlesEntity(category: String): NewsEntity =
-    NewsEntity(image, readMore, author, description, inshortsLink, title, timestamp, category)
+    NewsEntity(image, readMore, author, description, inshortsLink, title, timestamp, category )
