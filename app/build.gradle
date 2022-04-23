@@ -112,4 +112,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
 
+    /**
+     *  Ripple
+     */
+    implementation 'com.balysv:material-ripple:1.0.2'
+
 }

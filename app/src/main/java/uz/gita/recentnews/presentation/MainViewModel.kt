@@ -8,11 +8,10 @@ interface MainViewModel {
     val errorLivedata: LiveData<String>
     val progressLivedata: LiveData<Boolean>
     val loadNewsLivedata: LiveData<List<NewsEntity>>
-    val openFavouriteScreenLiveData: LiveData<Unit>
+    val readMoreLivedata: LiveData<NewsEntity>
+    val moveToCategoryLivedata: LiveData<Unit>
 
-
+    fun moveToCategory(category: String)
     fun allNews(query: String)
-    fun openFavouriteScreen()
-    fun addToFavourite(newsFav : NewsEntity)
-
+    fun readMore(data: NewsEntity)
 }

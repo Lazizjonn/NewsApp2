@@ -8,22 +8,14 @@ import java.io.Serializable
 data class NewsEntity(
 
     val image: String,
-
     val readMore: String?,
-
     val author: String,
-
     val description: String,
-
     val inshortsLink: String,
-
     @PrimaryKey
     val title: String,
-
     val timestamp: String,
-
     val category: String,
-
     ) : Serializable
 
 

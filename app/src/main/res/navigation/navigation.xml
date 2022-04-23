@@ -5,13 +5,13 @@
     android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/favouriteFragment"
-        android:name="uz.gita.recentnews.ui.screen.FavouriteFragment"
-        android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" >
-        <action
-            android:id="@+id/action_favouriteFragment_to_readMoreFragment"
-            app:destination="@id/readMoreFragment" />
+        android:id="@+id/readMoreFragment"
+        android:name="uz.gita.recentnews.ui.screen.ReadMoreFragment"
+        android:label="fragment_read_more"
+        tools:layout="@layout/fragment_read_more" >
+        <argument
+            android:name="data"
+            app:argType="uz.gita.recentnews.data.source.local.room.entity.NewsEntity" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -19,22 +19,25 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_favouriteFragment"
-            app:destination="@id/favouriteFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_readMoreFragment"
             app:destination="@id/readMoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_newsByCategory"
+            app:destination="@id/newsByCategory" />
     </fragment>
     <fragment
-        android:id="@+id/readMoreFragment"
-        android:name="uz.gita.recentnews.ui.screen.ReadMoreFragment"
-        android:label="fragment_read_more"
-        tools:layout="@layout/fragment_read_more" >
+        android:id="@+id/newsByCategory"
+        android:name="uz.gita.recentnews.ui.screen.NewsByCategory"
+        android:label="fragment_news_catgory"
+        tools:layout="@layout/fragment_news_catgory" >
         <action
-            android:id="@+id/action_readMoreFragment_to_favouriteFragment"
-            app:destination="@id/favouriteFragment" />
+            android:id="@+id/action_newsByCategory_to_readMoreFragment"
+            app:destination="@id/readMoreFragment" />
         <argument
-            android:name="data"
-            app:argType="uz.gita.recentnews.data.source.local.room.entity.NewsEntity" />
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
 </navigation>

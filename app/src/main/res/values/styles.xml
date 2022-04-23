@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- NavMenuFont color -->
+    <style name="customTextItem" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/merriweather_regular</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
-        <item name="cornerSize">2.5%</item>
+        <item name="cornerSize">4%</item>
     </style>
 
     <style name="DrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
@@ -10,5 +16,4 @@
     </style>
 
     <style name="Widget.Support.CoordinatorLayout" parent="android:Widget">@null</style>
-
 </resources>

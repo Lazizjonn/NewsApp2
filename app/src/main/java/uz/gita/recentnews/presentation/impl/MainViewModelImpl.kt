@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.onEach
 import okio.IOException
 import retrofit2.HttpException
 import uz.gita.mynewsapp.utils.isConnected
-import uz.gita.recentnews.data.source.local.room.MyRoomDataBase
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 import uz.gita.recentnews.domain.repository.NewsRepository
 import uz.gita.recentnews.presentation.MainViewModel
@@ -23,7 +22,8 @@ class MainViewModelImpl @Inject constructor(
     override var errorLivedata = MutableLiveData<String>()
     override var progressLivedata = MutableLiveData<Boolean>()
     override var loadNewsLivedata = MutableLiveData<List<NewsEntity>>()
-    override val openFavouriteScreenLiveData = MutableLiveData<Unit>()
+    override val readMoreLivedata = MutableLiveData<NewsEntity>()
+    override val moveToCategoryLivedata = MutableLiveData<Unit>()
 
     init {
         allNews("all")
@@ -52,11 +52,11 @@ class MainViewModelImpl @Inject constructor(
         }
     }
 
-    override fun openFavouriteScreen() {
-        openFavouriteScreenLiveData.value = Unit
+    override fun readMore(data: NewsEntity) {
+        readMoreLivedata.value = data
     }
 
-    override fun addToFavourite(newsFav: NewsEntity) {
-        repository.addToFavourites(newsFav)
+    override fun moveToCategory(category: String) {
+        moveToCategoryLivedata.value = Unit
     }
 }

@@ -16,14 +16,14 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    fun logging(): HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-
-    var client = OkHttpClient.Builder().addInterceptor(logging()).build()
-
-    @Singleton
-    @Provides
-    fun getRetrofit(): Retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).client(client).build()
+    @[Singleton Provides]
+    fun getRetrofit(): Retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).client(client()).build()
 
     @[Singleton Provides]
     fun getApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+
+    private fun logging(): HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    private fun client() = OkHttpClient.Builder().addInterceptor(logging()).build()
+
+
 }

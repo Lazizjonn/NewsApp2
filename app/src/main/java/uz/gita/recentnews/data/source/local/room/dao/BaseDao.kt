@@ -12,7 +12,4 @@ interface BaseDao<T> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(t: T)
 
-    @Delete
-    fun delete(t: T)
-
 }

@@ -22,23 +22,17 @@ class NewsRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             val list: ArrayList<NewsEntity> = ArrayList()
             response.body()?.let { list.addAll(it.articles.map { it.toArticlesEntity(query) }) }
+            room.getNewsDao().deleteAllByCategory(query)
             room.getNewsDao().insertAll(list)
             emit(Result.success(room.getNewsDao().getAllNews(query)))
         } else {
             emit(Result.failure(Exception("Response is unsuccessful")))
         }
 
-    }.catch { emit(Result.failure(it)) }.flowOn(Dispatchers.IO)
+    }
+        .catch { emit(Result.failure(it)) }
+        .flowOn(Dispatchers.IO)
 
     override fun getAllNewsFromRoom(query: String): List<NewsEntity> = room.getNewsDao().getAllNews(query)
-
-    override fun addToFavourites(newsFav: NewsEntity) = with(newsFav) {
-        room.getNewsDao().insert(
-            NewsEntity(
-                image, readMore, author, description, inshortsLink, title,
-                timestamp, category
-            )
-        )
-    }
 
 }

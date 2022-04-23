@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import uz.gita.recentnews.data.source.local.room.MyRoomDataBase
+import uz.gita.recentnews.data.source.local.room.dao.NewsDao
 
 
 @[Module InstallIn(SingletonComponent::class)]
@@ -18,4 +19,8 @@ class DatabaseModule {
         Room.databaseBuilder(context, MyRoomDataBase::class.java, "MyRoomDatabase")
             .allowMainThreadQueries()
             .build()
+
+    @Provides
+    fun getDAO(@ApplicationContext context: Context): NewsDao =
+        getDatabase(context).getNewsDao()
 }

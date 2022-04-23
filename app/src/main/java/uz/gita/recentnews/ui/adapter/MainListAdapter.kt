@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import uz.gita.recentnews.R
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 
-class MainListAdapter : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHolder>(NewsDiffUtil) {
+class MainListAdapter (val hashtag: String) : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHolder>(NewsDiffUtil) {
 
     private var listener: ((NewsEntity) -> Unit)? = null
 
@@ -34,6 +34,7 @@ class MainListAdapter : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHold
         var isfav: AppCompatCheckBox? = null
         var title: TextView? = null
         var author: TextView? = null
+        var _hashTag: TextView? = null
         var timestamp: TextView? = null
         var image: ImageView? = null
         var descriptionNews: TextView? = null
@@ -44,6 +45,7 @@ class MainListAdapter : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHold
             author = view.findViewById(R.id.authorNews)
             timestamp = view.findViewById(R.id.time_stamp)
             image = view.findViewById(R.id.imageNews)
+            _hashTag = view.findViewById(R.id.hashtag)
             descriptionNews = view.findViewById(R.id.descriptionNews)
             isfav = view.findViewById(R.id.isFav)
         }
@@ -53,6 +55,7 @@ class MainListAdapter : ListAdapter<NewsEntity, MainListAdapter.NewsListViewHold
             title!!.text = item.title
             author!!.text = item.author
             timestamp!!.text = item.timestamp
+            _hashTag!!.text = hashtag
             Glide.with(itemView)
                 .load(item.image)
                 .placeholder(R.drawable.error_icon)
