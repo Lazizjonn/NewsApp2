@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import okhttp3.internal.trimSubstring
 import uz.gita.recentnews.R
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 
@@ -54,7 +55,7 @@ class MainListAdapter (val hashtag: String) : ListAdapter<NewsEntity, MainListAd
             val item = getItem(absoluteAdapterPosition)
             title!!.text = item.title
             author!!.text = item.author
-            timestamp!!.text = item.timestamp
+            timestamp!!.text = item.timestamp.trimSubstring(0,10)
             _hashTag!!.text = hashtag
             Glide.with(itemView)
                 .load(item.image)

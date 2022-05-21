@@ -7,6 +7,7 @@ object Categories {
     fun getAllCategories(): List<SnapData> {
         return listOf(
             SnapData("World", "world", R.drawable.news_world),
+            SnapData("Sports", "sports", R.drawable.news_sport),
             SnapData("Technology", "technology", R.drawable.news_technology),
             SnapData("Startup", "startup", R.drawable.news_startup),
             SnapData("Entertainment", "entertainment", R.drawable.news_entertainment),

@@ -6,4 +6,6 @@
     <string name="close">close</string>
     <string name="open">open</string>
     <string name="latest_news">Latest news</string>
+    <string name="based_on_user_rating">Based on User Rating</string>
+    <string name="categories">Categories</string>
 </resources>
