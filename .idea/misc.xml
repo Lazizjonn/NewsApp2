@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/1_Real_projects/App_7_news/RecentNews/app/src/main/res/drawable/placeholder.xml" value="0.131" />
+        <entry key="..\:/AndroidStudioProjects/1_Real_projects/App_7_news/RecentNews/app/src/main/res/layout/fragment_main.xml" value="0.19739583333333333" />
+        <entry key="..\:/AndroidStudioProjects/1_Real_projects/App_7_news/RecentNews/app/src/main/res/layout/fragment_news_catgory.xml" value="0.19739583333333333" />
+        <entry key="..\:/AndroidStudioProjects/1_Real_projects/App_7_news/RecentNews/app/src/main/res/layout/fragment_read_more.xml" value="0.19739583333333333" />
+        <entry key="..\:/AndroidStudioProjects/1_Real_projects/App_7_news/RecentNews/app/src/main/res/layout/item_news.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/drawable/ic_more_vert.xml" value="0.107" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/drawable/icon.xml" value="0.107" />
+        <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/drawable/rate_icon.xml" value="0.119" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/drawable/share_icon.xml" value="0.107" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/activity_main.xml" value="0.19739583333333333" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/category.xml" value="0.16296296296296298" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/fragment_favourite.xml" value="0.16296296296296298" />
-        <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/fragment_main.xml" value="0.16296296296296298" />
+        <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/fragment_main.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/fragment_read_more.xml" value="0.15555555555555556" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/item_category.xml" value="0.16296296296296298" />
         <entry key="..\:/AndroidStudioProjects/2_Working_on_projects/RecentNews/app/src/main/res/layout/item_news.xml" value="0.2" />

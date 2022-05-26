@@ -3,6 +3,8 @@ package uz.gita.recentnews.ui.screen
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import uz.gita.mynewsapp.utils.isConnected
 import uz.gita.recentnews.R
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
 import uz.gita.recentnews.databinding.FragmentNewsCatgoryBinding
@@ -42,22 +45,22 @@ class NewsByCategory : Fragment(R.layout.fragment_news_catgory) {
             findNavController().popBackStack()
         }
 
-        viewModel.errorLivedata.observe(viewLifecycleOwner, errorObserver)
+        viewModel.errorLivedata.observe(this@NewsByCategory, errorObserver)
         viewModel.newsByCategoryLivedata.observe(viewLifecycleOwner, newsDataObserver)
         viewModel.progressLivedata.observe(viewLifecycleOwner, progressObserver)
-        viewModel.readMoreLivedata.observe(viewLifecycleOwner, readMoreObserver)
+        viewModel.readMoreLivedata.observe(this@NewsByCategory, readMoreObserver)
 
     }
 
     private fun adapterSet() {
         adapter = MainListAdapter(navArgs.title)
-
-        binding.listNews.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.listNews.isVisible = false
+        binding.listNews.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.listNews.adapter = adapter
 
         adapter.setListener {
-            viewModel.readingMore(it)
+            if (isConnected())  viewModel.readingMore(it)
+            else Toast.makeText(requireContext(), "Connection  lost!", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -69,7 +72,14 @@ class NewsByCategory : Fragment(R.layout.fragment_news_catgory) {
         binding.swipeRefresh.isRefreshing = it
     }
     private val newsDataObserver = Observer<List<NewsEntity>> {
-        adapter.submitList(it)
+        if (it.isNotEmpty())  {
+            binding.listNews.isVisible = true
+            binding.lottie.isVisible = false
+            adapter.submitList(it)
+        } else {
+            binding.listNews.isVisible = false
+            binding.lottie.isVisible = true
+        }
     }
     private val errorObserver = Observer<String> {
         Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()

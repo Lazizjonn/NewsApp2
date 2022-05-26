@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/teal_700"
+        android:background="#F7C88A8A"
         android:orientation="horizontal"
         android:paddingEnd="8dp"
         android:paddingStart="8dp"

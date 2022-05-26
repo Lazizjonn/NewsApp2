@@ -59,8 +59,8 @@ class MainListAdapter (val hashtag: String) : ListAdapter<NewsEntity, MainListAd
             _hashTag!!.text = hashtag
             Glide.with(itemView)
                 .load(item.image)
-                .placeholder(R.drawable.error_icon)
-                .error(R.drawable.error_icon)
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
                 .into(image!!)
             descriptionNews!!.text = item.description
             isfav!!.isChecked = false

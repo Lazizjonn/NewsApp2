@@ -4,7 +4,7 @@
     <!-- NavMenuFont color -->
     <style name="customTextItem" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:fontFamily">@font/merriweather_regular</item>
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">

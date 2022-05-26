@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -19,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import uz.gita.mynewsapp.utils.isConnected
 import uz.gita.recentnews.R
 import uz.gita.recentnews.data.common.Categories
 import uz.gita.recentnews.data.source.local.room.entity.NewsEntity
@@ -101,11 +104,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun setObservers() {
         viewModel.loadNewsLivedata.observe(viewLifecycleOwner, loadNewsObserver)
         viewModel.progressLivedata.observe(viewLifecycleOwner, progressObserver)
-        viewModel.errorLivedata.observe(viewLifecycleOwner, errorObserver)
+        viewModel.errorLivedata.observe(this, errorObserver)
         viewModel.readMoreLivedata.observe(this, readMoreObserver)
     }
 
     private fun adapterSet() {
+        binding.listNews.isVisible = false
         binding.listNews.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.listNews.adapter = adapter
     }
@@ -124,9 +128,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.clickFavourite.setOnClickListener {
         }
         adapter.setListener {
-            viewModel.readMore(it)
+            if (isConnected())  viewModel.readMore(it)
+            else Toast.makeText(requireContext(), "Connection  lost!", Toast.LENGTH_SHORT).show()
         }
         snapAdapter.setLyambda { query, title ->
+            if (!isConnected()) Toast.makeText(requireContext(), "Connection  lost!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToNewsByCategory(query, title))
         }
     }
@@ -194,13 +200,21 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
     private val loadNewsObserver = Observer<List<NewsEntity>> {
         Log.d("TAG", "fragment : allNews keldi, size " + it)
-        adapter.submitList(it)
+        if (it.isNotEmpty())  {
+            binding.listNews.isVisible = true
+            binding.lottie.isVisible = false
+            adapter.submitList(it)
+        } else {
+            binding.listNews.isVisible = false
+            binding.lottie.isVisible = true
+        }
     }
     private val progressObserver = Observer<Boolean> {
         binding.swipeRefresh.isRefreshing = it
     }
     private val readMoreObserver = Observer<NewsEntity> {
-        Log.d("url", "url : " + it)
+        Log.d("url", "" +
+                "url : " + it)
         findNavController().navigate(MainFragmentDirections.actionMainFragmentToReadMoreFragment(it))
     }
 
