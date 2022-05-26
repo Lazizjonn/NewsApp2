@@ -18,7 +18,7 @@ class ReadMoreFragment : Fragment(R.layout.fragment_read_more) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.webView.loadUrl(navArgs.data.readMore!!)
-        binding.toolbarText.text = navArgs.data.title
+        binding.toolbarText.text = (navArgs.data.title).trim()
         binding.buttonBack.setOnClickListener {
             findNavController().popBackStack()
         }
