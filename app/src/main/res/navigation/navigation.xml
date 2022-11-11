@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
+
     <fragment
         android:id="@+id/readMoreFragment"
-        android:name="uz.gita.recentnews.ui.screen.ReadMoreFragment"
+        android:name="uz.gita.recentnews_slp.ui.screen.ReadMoreFragment"
         android:label="fragment_read_more"
         tools:layout="@layout/fragment_read_more" >
         <argument
             android:name="data"
-            app:argType="uz.gita.recentnews.data.source.local.room.entity.NewsEntity" />
+            app:argType="uz.gita.recentnews_slp.data.source.local.room.entity.NewsEntity" />
     </fragment>
+
     <fragment
         android:id="@+id/mainFragment"
-        android:name="uz.gita.recentnews.ui.screen.MainFragment"
+        android:name="uz.gita.recentnews_slp.ui.screen.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -24,10 +26,15 @@
         <action
             android:id="@+id/action_mainFragment_to_newsByCategory"
             app:destination="@id/newsByCategory" />
+        <action
+            android:id="@+id/action_mainFragment_to_aboutUsFragment2"
+            app:destination="@id/aboutUsFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/newsByCategory"
-        android:name="uz.gita.recentnews.ui.screen.NewsByCategory"
+        android:name="uz.gita.recentnews_slp.ui.screen.NewsByCategory"
         android:label="fragment_news_catgory"
         tools:layout="@layout/fragment_news_catgory" >
         <action
@@ -40,4 +47,11 @@
             android:name="title"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="uz.gita.recentnews_slp.ui.screen.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+
 </navigation>

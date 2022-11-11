@@ -1,11 +1,24 @@
-
 <resources>
     <string name="app_name">RecentNews</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="close">close</string>
     <string name="open">open</string>
     <string name="latest_news">Latest news</string>
     <string name="based_on_user_rating">Based on User Rating</string>
     <string name="categories">Categories</string>
+
+    <string name="text_1">Inshorts.me is an unofficial API for Inshorts for fetching latest news.</string>
+    <string name="text_2">Blazing fast. No more scraping the pages for news,  18 different categories.</string>
+    <string name="text_3">Cookies and Usage Data can be used by <b>Google Analytics (Google Inc.):</b></string>
+    <string name="text_4">Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this Application, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network. Place of processing: US (read following:)</string>
+    <string name="text_5">1. https://github.com/sumitkolhe/inshorts-api/blob/main/LICENSE</string>
+    <string name="text_6">2. https://github.com/sumitkolhe/inshorts-api/blob/main/README.md</string>
+    <string name="text_7">More details concerning the collection or processing of Cookies and Usage Data, or any issues may be requested from the Data Controller at any time with following link: </string>
+    <string name="text_8.1">Way to connect to provider : https://github.com/sumitkolhe/inshorts-api/issues/new</string>
+    <string name="text_8.2">Provider phone: -</string>
+
+    <string name="text_10">In accordance with the terms of use of the materials of the <b>Inshorts.me</b> site, the creator of the app does not take responsibility for the validity of the information published on the site as it is copied based on the site rules (author and source of article are written). Regarding the article published on the site, the opinion of its author and the site editors may not be the same.</string>
+    <string name="text_11">Also, the creator of the app does not undertake to write a separate answer to each of the letters sent by his readers.</string>
+    <string name="text_12.1">Developer email: <a href="suyunovlaziz1997@gmail.com">suyunovlaziz1997@gmail.com</a></string>
+    <string name="text_12.2">Developer phone: <a href="+393515608087">+393515608087</a></string>
 </resources>
